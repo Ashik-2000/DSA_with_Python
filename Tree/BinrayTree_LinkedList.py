@@ -34,4 +34,4 @@ nodeB.right = nodeF
 nodeF.left = nodeG
 
 # printing c
-print("Root.left.left.data: ", root.left.left.data)
+print("Root.left.left.data: ", root.left.right.data)
