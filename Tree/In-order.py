@@ -12,7 +12,7 @@ class TreeNode():
         self.left = None
         self.right = None
 
-# Pre-Order traversal function
+# In-Order traversal function
 def inOrderTraversal(node):
     if node == None:
         return
