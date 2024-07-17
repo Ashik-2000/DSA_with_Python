@@ -15,7 +15,7 @@ class Treenode():
 
 def minValue(node):
     current = node
-    while current.left is not None:
+    while node.left is not None:
         current = current.left
     return current
 
@@ -23,29 +23,28 @@ def inOrderTraversal(node):
     if node is None:
         return
     inOrderTraversal(node.left)
-    print(node.data, end=', ')
+    print(node.data, end=' ')
     inOrderTraversal(node.right)
 
 def delete(node, data):
     if node is None:
         return None
-    # searching for that target node
     if data < node.data:
         node.left = delete(node.left, data)
     elif data > node.data:
         node.right = delete(node.right, data)
     else:
-        # for deleting nodes with only one child or no child
-        if not node.left:
+        if node.left is None:
             temp = node.right
             node = None
             return temp
-        elif not node.right:
+        elif node.right is None:
             temp = node.left
             node = None
             return temp
+        node.data = minValue(node.right).data
+        node.right = delete(node.right, node.data)
     return node
-
 
 root = Treenode(13)
 node7 = Treenode(7)
@@ -69,6 +68,6 @@ node19.left = node18
 
 
 inOrderTraversal(root)
-delete(root, 8)
+delete(root, 15)
 print()
 inOrderTraversal(root)
