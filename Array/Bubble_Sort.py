@@ -22,10 +22,8 @@ for i in range(n-1):
     for j in range(n-i-1):
         if my_array[j] > my_array[j+1]:
             my_array[j], my_array[j+1] = my_array[j+1], my_array[j]
-            swapped = True  # If any swapping happens then it would assign true which means the array must be still
-            # unsorted
-    if not swapped:     # if it didn't do any swapping, it means the array is already sorted and no need to go
-        # through any more loop.
+            swapped = True  # If any swapping happens then it would assign true which means the array must be still unsorted
+    if not swapped:     # if it didn't do any swapping, it means the array is already sorted and no need to go through any more loop.
         break
 
 print("\nImproved program:\nSorted array:", my_array)

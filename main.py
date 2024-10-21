@@ -1,68 +1,25 @@
-class TreeNode:
-    def __init__(self, data):
-        self.data = data
-        self.left = None
-        self.right = None
+my_array = [64, 34, 25, 12, 22, 11, 90, 5]
 
-def minValue(node):
-    current = node
-    while current.left is not None:
-        current = current.left
-    return current
+n = len(my_array)
 
-def inOrderTraversal(node):
-    if node is None:
-        return
-    inOrderTraversal(node.left)
-    print(node.data, end=' ')
-    inOrderTraversal(node.right)
 
-def delete(node, data):
-    if node is None:
-        return None
-    if data < node.data:
-        node.left = delete(node.left, data)
-    elif data > node.data:
-        node.right = delete(node.right, data)
-    else:
-        if node.left is None:
-            temp = node.right
-            node = None
-            return temp
-        elif node.right is None:
-            temp = node.left
-            node = None
-            return temp
-        node.data = minValue(node.right).data
-        node.right = delete(node.right, node.data)
-    return node
+for i in range (n-1):
+    swapped = False
+    for j in range (n-1-i):
+        if my_array[j] > my_array[j+1]:
+            my_array[j], my_array[j+1] = my_array[j+1], my_array[j]
+            swapped = True
+    if not swapped:
+        break
 
-root = TreeNode(13)
-node7 = TreeNode(7)
-node15 = TreeNode(15)
-node3 = TreeNode(3)
-node8 = TreeNode(8)
-node14 = TreeNode(14)
-node19 = TreeNode(19)
-node18 = TreeNode(18)
+print(my_array)
 
-root.left = node7
-root.right = node15
 
-node7.left = node3
-node7.right = node8
+for i in range(n-1):
+    minindex = i
+    for j in range(i+1, n-1):
+        if my_array[j] < my_array[minindex]:
+            minindex = j
+    my_array[i], my_array[minindex] = my_array[minindex], my_array[i]
 
-node15.left = node14
-node15.right = node19
-
-node19.left = node18
-
-# Traverse
-inOrderTraversal(root)
-
-# Delete node 15
-delete(root, 15)
-
-# Traverse
-print() # Creates a new line
-inOrderTraversal(root)
+print(my_array)
